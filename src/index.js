@@ -12,7 +12,12 @@ const anecdotes = [
 
 const Anecdota = ({ selected }) => {
   // console.log(anecdotes[selected]);
-  return <div>{anecdotes[selected]} </div>;
+  return (
+    <div>
+      <h1>Anecdota del dia</h1>
+      <div>{anecdotes[selected]} </div>
+    </div>
+  );
 };
 
 const vote = (selected, points) => {
@@ -24,6 +29,16 @@ const vote = (selected, points) => {
 
 const TextVote = ({ selected, points }) => {
   return <div>Has {points[selected]} votes</div>;
+};
+
+const AnecdotaMasVotada = ({ selected, points }) => {
+  // console.log("entro");
+  return (
+    <div>
+      <h1>Anecdota mas votada</h1>
+      <div>{anecdotes[selected]} </div>;<div>Has {points[selected]} votes</div>;
+    </div>
+  );
 };
 
 const ButtonVote = ({ selected, points, setPoints }) => {
@@ -74,6 +89,10 @@ const App = (props) => {
         <ButtonPrev selected={selected} setSelected={setSelected} />
         <ButtonNext selected={selected} setSelected={setSelected} />
       </div>
+      <AnecdotaMasVotada
+        selected={points.indexOf(Math.max(...points))}
+        points={points}
+      />
     </div>
   );
 };
